@@ -606,8 +606,12 @@ class AnimeDownloader(
         val audioMaps = formatMaps(video.audioTracks, "a", video.subtitleTracks.size)
         val audioMetadata = formatMetadata(video.audioTracks, "a")
 
+        val sourceOptions = video.ffmpegArgs.joinToString(" ") { (key, value) ->
+            "-$key \"$value\""
+        }
+
         val command = listOf(
-            headerOptions, "-i \"${video.videoUrl}\"", subtitleInputs, audioInputs,
+            headerOptions, "-i \"${video.videoUrl}\"", subtitleInputs, audioInputs, sourceOptions,
             "-map 0:v", audioMaps, "-map 0:a?", subtitleMaps, "-map 0:s? -map 0:t?",
             "-f matroska -c:a copy -c:v copy -c:s copy",
             subtitleMetadata, audioMetadata,
