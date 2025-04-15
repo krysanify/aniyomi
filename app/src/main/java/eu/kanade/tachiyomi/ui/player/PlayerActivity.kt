@@ -1073,8 +1073,8 @@ class PlayerActivity : BaseActivity() {
                 parseVideoUrl(video.videoUrl),
                 "replace",
                 "0",
-                videoOptions
-            )
+                videoOptions,
+            ),
         )
     }
 
