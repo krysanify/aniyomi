@@ -11,6 +11,7 @@ import eu.kanade.tachiyomi.ui.reader.model.ReaderChapter
 import eu.kanade.tachiyomi.ui.reader.model.ReaderPage
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
@@ -132,6 +133,7 @@ internal class HttpPageLoader(
         queue.offer(PriorityPage(page, 2))
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun recycle() {
         super.recycle()
         scope.cancel()

@@ -21,6 +21,7 @@ import eu.kanade.tachiyomi.util.system.getParcelableExtraCompat
 import eu.kanade.tachiyomi.util.system.notificationManager
 import eu.kanade.tachiyomi.util.system.toShareIntent
 import eu.kanade.tachiyomi.util.system.toast
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import tachiyomi.core.common.i18n.stringResource
 import tachiyomi.core.common.util.lang.launchIO
@@ -50,6 +51,7 @@ import eu.kanade.tachiyomi.BuildConfig.APPLICATION_ID as ID
  * Pending Broadcasts should be made from here.
  * NOTE: Use local broadcasts if possible.
  */
+@OptIn(DelicateCoroutinesApi::class)
 class NotificationReceiver : BroadcastReceiver() {
 
     private val getManga: GetManga by injectLazy()
@@ -207,7 +209,7 @@ class NotificationReceiver : BroadcastReceiver() {
      * Called to start share intent to share backup file
      *
      * @param context context of application
-     * @param path path of file
+     * @param uri path of file
      */
     private fun shareFile(context: Context, uri: Uri, fileMimeType: String) {
         context.startActivity(uri.toShareIntent(context, fileMimeType))
@@ -589,7 +591,7 @@ class NotificationReceiver : BroadcastReceiver() {
          *
          * @param context context of application
          * @param uri location path of file
-         * @param notificationId id of notification
+         * @param uri id of notification
          * @return [PendingIntent]
          */
         internal fun shareImagePendingBroadcast(context: Context, uri: Uri): PendingIntent {

@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.animesource.AnimeSource
 import eu.kanade.tachiyomi.animesource.model.Video
 import eu.kanade.tachiyomi.data.download.anime.model.AnimeDownload
 import eu.kanade.tachiyomi.util.size
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.drop
@@ -267,6 +268,7 @@ class AnimeDownloadManager(
      * @param anime the anime of the episodes.
      * @param source the source of the episodes.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     fun deleteEpisodes(episodes: List<Episode>, anime: Anime, source: AnimeSource) {
         launchIO {
             val filteredEpisodes = getEpisodesToDelete(episodes, anime)
@@ -297,6 +299,7 @@ class AnimeDownloadManager(
      * @param source the source of the anime.
      * @param removeQueued whether to also remove queued downloads.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     fun deleteAnime(anime: Anime, source: AnimeSource, removeQueued: Boolean = true) {
         launchIO {
             if (removeQueued) {
