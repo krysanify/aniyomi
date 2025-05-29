@@ -14,6 +14,7 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 object PlayerSettingsAdvancedScreen : SearchableSettings {
+    private fun readResolve(): Any = PlayerSettingsAdvancedScreen
 
     @ReadOnlyComposable
     @Composable
@@ -34,17 +35,6 @@ object PlayerSettingsAdvancedScreen : SearchableSettings {
                 preference = enableUserFiles,
                 title = stringResource(MR.strings.pref_mpv_user_files),
                 subtitle = stringResource(MR.strings.pref_mpv_user_files_summary),
-                onValueChanged = {
-                    // Ask for external storage permission
-                    if (it) {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && !Environment.isExternalStorageManager()) {
-                            val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
-                            intent.data = Uri.fromParts("package", context.packageName, null)
-                            context.startActivity(intent)
-                        }
-                    }
-                    true
-                },
             ),
             Preference.PreferenceItem.MPVConfPreference(
                 preference = mpvConf,
