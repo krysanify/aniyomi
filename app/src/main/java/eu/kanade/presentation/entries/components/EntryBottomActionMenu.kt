@@ -22,16 +22,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.Input
 import androidx.compose.material.icons.automirrored.outlined.Label
 import androidx.compose.material.icons.automirrored.outlined.LabelOff
+import androidx.compose.material.icons.automirrored.outlined.OpenInNew
 import androidx.compose.material.icons.outlined.BookmarkAdd
 import androidx.compose.material.icons.outlined.BookmarkRemove
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.DoneAll
 import androidx.compose.material.icons.outlined.Download
-import androidx.compose.material.icons.outlined.Input
 import androidx.compose.material.icons.outlined.NewLabel
-import androidx.compose.material.icons.outlined.OpenInNew
 import androidx.compose.material.icons.outlined.RemoveDone
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -221,7 +221,7 @@ fun EntryBottomActionMenu(
                 if (!isManga && onExternalClicked != null && !playerPreferences.alwaysUseExternalPlayer().get()) {
                     Button(
                         title = stringResource(MR.strings.action_play_externally),
-                        icon = Icons.Outlined.OpenInNew,
+                        icon = Icons.AutoMirrored.Outlined.OpenInNew,
                         toConfirm = confirm[9],
                         onLongClick = { onLongClickItem(9) },
                         onClick = onExternalClicked,
@@ -230,7 +230,7 @@ fun EntryBottomActionMenu(
                 if (!isManga && onInternalClicked != null && playerPreferences.alwaysUseExternalPlayer().get()) {
                     Button(
                         title = stringResource(MR.strings.action_play_internally),
-                        icon = Icons.Outlined.Input,
+                        icon = Icons.AutoMirrored.Outlined.Input,
                         toConfirm = confirm[10],
                         onLongClick = { onLongClickItem(10) },
                         onClick = onInternalClicked,

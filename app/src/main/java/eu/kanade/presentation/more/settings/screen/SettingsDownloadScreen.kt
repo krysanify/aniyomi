@@ -151,7 +151,7 @@ object SettingsDownloadScreen : SearchableSettings {
                     title = stringResource(MR.strings.pref_remove_bookmarked_chapters),
                 ),
                 Preference.PreferenceItem.SwitchPreference(
-                    pref = downloadPreferences.downloadFillermarkedItems(),
+                    preference = downloadPreferences.downloadFillermarkedItems(),
                     title = stringResource(MR.strings.pref_download_fillermarked_items),
                 ),
                 getExcludedAnimeCategoriesPreference(
