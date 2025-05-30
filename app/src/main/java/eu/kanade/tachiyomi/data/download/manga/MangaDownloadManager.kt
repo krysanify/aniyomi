@@ -5,6 +5,7 @@ import eu.kanade.tachiyomi.data.download.manga.model.MangaDownload
 import eu.kanade.tachiyomi.source.MangaSource
 import eu.kanade.tachiyomi.source.model.Page
 import eu.kanade.tachiyomi.util.size
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.drop
@@ -261,6 +262,7 @@ class MangaDownloadManager(
      * @param manga the manga of the chapters.
      * @param source the source of the chapters.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     fun deleteChapters(chapters: List<Chapter>, manga: Manga, source: MangaSource) {
         launchIO {
             val filteredChapters = getChaptersToDelete(chapters, manga)
@@ -288,6 +290,7 @@ class MangaDownloadManager(
      * @param source the source of the manga.
      * @param removeQueued whether to also remove queued downloads.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     fun deleteManga(manga: Manga, source: MangaSource, removeQueued: Boolean = true) {
         launchIO {
             if (removeQueued) {

@@ -45,6 +45,7 @@ import uy.kohesive.injekt.Injekt
 import uy.kohesive.injekt.api.get
 
 object SettingsDownloadScreen : SearchableSettings {
+    private fun readResolve(): Any = SettingsDownloadScreen
 
     @ReadOnlyComposable
     @Composable
@@ -150,6 +151,10 @@ object SettingsDownloadScreen : SearchableSettings {
                     preference = downloadPreferences.removeBookmarkedChapters(),
                     title = stringResource(MR.strings.pref_remove_bookmarked_chapters),
                 ),
+                Preference.PreferenceItem.SwitchPreference(
+                    preference = downloadPreferences.downloadFillermarkedItems(),
+                    title = stringResource(MR.strings.pref_download_fillermarked_items),
+                ),
                 getExcludedAnimeCategoriesPreference(
                     downloadPreferences = downloadPreferences,
                     categories = { animeCategories },
@@ -182,11 +187,11 @@ object SettingsDownloadScreen : SearchableSettings {
         categories: () -> List<Category>,
     ): Preference.PreferenceItem.MultiSelectListPreference {
         return Preference.PreferenceItem.MultiSelectListPreference(
-            preference = downloadPreferences.removeExcludeCategories(),
+            preference = downloadPreferences.removeExcludeAnimeCategories(),
+            title = stringResource(MR.strings.pref_remove_exclude_categories_anime),
             entries = categories()
                 .associate { it.id.toString() to it.visualName }
                 .toImmutableMap(),
-            title = stringResource(MR.strings.pref_remove_exclude_categories_anime),
         )
     }
 

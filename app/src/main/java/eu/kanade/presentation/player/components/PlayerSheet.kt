@@ -85,7 +85,7 @@ fun PlayerSheet(
     val density = LocalDensity.current
     val latestOnDismissRequest by rememberUpdatedState(onDismissRequest)
     val maxWidth = if (LocalConfiguration.current.orientation == ORIENTATION_LANDSCAPE) {
-        640.dp
+        720.dp
     } else {
         420.dp
     }
@@ -223,7 +223,7 @@ private fun <T> AnchoredDraggableState<T>.preUpPostDownNestedScrollConnection() 
 
     override suspend fun onPreFling(available: Velocity): Velocity {
         val toFling = available.toFloat()
-        return if (toFling < 0 && offset > anchors.minAnchor()) {
+        return if (toFling < 0 && offset > anchors.minPosition()) {
             settle(toFling)
             available
         } else {

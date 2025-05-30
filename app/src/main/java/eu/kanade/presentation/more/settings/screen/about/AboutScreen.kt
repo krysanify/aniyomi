@@ -59,6 +59,7 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 
 object AboutScreen : Screen() {
+    private fun readResolve(): Any = AboutScreen
 
     @Composable
     override fun Content() {
@@ -225,7 +226,6 @@ object AboutScreen : Screen() {
                     is GetApplicationRelease.Result.OsTooOld -> {
                         context.toast(MR.strings.update_check_eol)
                     }
-                    else -> {}
                 }
             } catch (e: Exception) {
                 context.toast(e.message)
