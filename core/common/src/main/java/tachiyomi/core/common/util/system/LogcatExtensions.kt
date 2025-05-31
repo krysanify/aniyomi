@@ -7,7 +7,7 @@ import logcat.logcat
 inline fun Any.logcat(
     priority: LogPriority = LogPriority.DEBUG,
     throwable: Throwable? = null,
-    message: () -> String = { "" },
+    crossinline message: () -> String = { "" },
 ) = logcat(priority = priority) {
     var msg = message()
     if (throwable != null) {
